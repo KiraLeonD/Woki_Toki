@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         speakerbtn = findViewById(R.id.speakerbtn);
         bigwhitemic = findViewById(R.id.bigwhitemic);
         talkstatus = findViewById(R.id.ttttext);
+        SeekBar seekBar = findViewById(R.id.seekBar2);
+        seekBar.setProgress(50);
 
 
         autoCompleteTextView = findViewById(R.id.auto_complete_text);
@@ -87,14 +90,42 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!isMuted){
                     isMuted=true;
+                    seekBar.setProgress(0);
                     speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volmute));
                 }
                 else {
                     isMuted=false;
+                    seekBar.setProgress(50);
                     speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volup));
                 }
             }
         });
         //END MUTE BUTTON
+        //VOL BAR
+// Add an OnSeekBarChangeListener to the SeekBar
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress == 0) {
+                    isMuted = true;
+                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volmute));
+                } else {
+                    isMuted = false;
+                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volup));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // This method is called when the user starts dragging the SeekBar.
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // This method is called when the user stops dragging the SeekBar.
+            }
+        });
+
+        //END VOL BAR
     }
 }
