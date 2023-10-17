@@ -5,15 +5,16 @@
     android:id="@+id/splashLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/ScreenBackground"
     tools:context=".SplashActivity">
 
     <TextView
         android:id="@+id/tv_instr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextColor"
         android:fontFamily="sans-serif-black"
         android:text="Woki Toki"
-        android:textColor="#2B2B2B"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +27,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextColor"
         android:text="Tap sreen to start"
         android:textSize="24sp"
         android:textStyle="italic"
@@ -40,6 +42,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextColor"
         app:layout_constraintBottom_toTopOf="@+id/tv_instr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

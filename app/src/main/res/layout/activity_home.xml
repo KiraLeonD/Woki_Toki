@@ -5,7 +5,7 @@
     android:id="@+id/homeact"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAEAEA"
+    style="@style/ScreenBackground"
     tools:context=".HomeActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -24,6 +24,7 @@
         <AutoCompleteTextView
             android:id="@+id/auto_complete_text"
             android:layout_width="180dp"
+            style="@style/TextColor"
             android:layout_height="50dp"
             android:inputType="none"
             android:text="Select Channel"
@@ -46,9 +47,9 @@
         android:id="@+id/ttttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/TextColor"
         android:layout_marginTop="24dp"
         android:text="Tap to talk"
-        android:textColor="#121212"
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,6 +89,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/navbg" />
+    <ImageView
+        android:id="@+id/navbgwhite"
+        android:layout_width="410dp"
+        android:layout_height="83dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/navbgwhite" />
 
     <Switch
         android:id="@+id/switch3"
@@ -107,5 +115,15 @@
         app:layout_constraintStart_toStartOf="@+id/navbg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/wokilogonav" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/navbg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wokilogonavwhite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

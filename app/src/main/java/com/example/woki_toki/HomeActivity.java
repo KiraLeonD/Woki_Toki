@@ -1,8 +1,10 @@
 package com.example.woki_toki;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
-import android.media.Image;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +33,11 @@ public class HomeActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     ImageButton speakerbtn, bigwhitemic;
     TextView talkstatus;
-    boolean isMuted,isTalking;
+    boolean isMuted,isTalking,darkMODE;
     ArrayAdapter<String> adapterItems;
+    Switch darkMode;
+    SharedPreferences sp; SharedPreferences.Editor edit;
+    ImageView wokilogonavwhite, wokilogonav, navbg, navbgwhite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,56 @@ public class HomeActivity extends AppCompatActivity {
         // Hide the ActionBar/Toolbar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
+
+        darkMode = findViewById(R.id.switch3);
+        wokilogonavwhite = findViewById(R.id.imageView9);
+        wokilogonav = findViewById(R.id.imageView8);
+        navbgwhite = findViewById(R.id.navbgwhite);
+        navbg = findViewById(R.id.navbg);
+        sp = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        darkMODE = sp.getBoolean("dark", false);
+
+        if (darkMODE) {
+            wokilogonavwhite.setVisibility(View.VISIBLE);
+            navbgwhite.setVisibility(View.VISIBLE);
+            wokilogonav.setVisibility(View.INVISIBLE);
+            navbg.setVisibility(View.INVISIBLE);
+            darkMode.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            wokilogonavwhite.setVisibility(View.INVISIBLE);
+            navbgwhite.setVisibility(View.INVISIBLE);
+            wokilogonav.setVisibility(View.VISIBLE);
+            navbg.setVisibility(View.VISIBLE);
+            darkMode.setChecked(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        darkMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor edit = sp.edit();
+                if (darkMode.isChecked()) {
+                    // Set night mode to yes if the Switch is checked
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    wokilogonavwhite.setVisibility(View.VISIBLE);
+                    navbgwhite.setVisibility(View.VISIBLE);
+                    wokilogonav.setVisibility(View.INVISIBLE);
+                    navbg.setVisibility(View.INVISIBLE);
+                    edit.putBoolean("dark", true);
+                } else {
+                    // Set night mode to no if the Switch is not checked
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    wokilogonavwhite.setVisibility(View.INVISIBLE);
+                    navbgwhite.setVisibility(View.INVISIBLE);
+                    wokilogonav.setVisibility(View.VISIBLE);
+                    navbg.setVisibility(View.VISIBLE);
+                    edit.putBoolean("dark", false);
+                }
+                edit.apply();
+            }
+        });
+
         speakerbtn = findViewById(R.id.speakerbtn);
         bigwhitemic = findViewById(R.id.bigwhitemic);
         talkstatus = findViewById(R.id.ttttext);
@@ -135,7 +192,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         //END VOL BAR
-    }
 
+
+    }
 
 }
