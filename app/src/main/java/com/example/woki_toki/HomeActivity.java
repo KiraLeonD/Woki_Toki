@@ -21,8 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.view.View;
-import android.widget.Button;
+import android.media.AudioManager;
 
 import com.example.woki_toki.media.RtcTokenBuilder2;
 import com.example.woki_toki.media.RtcTokenBuilder2.Role;
@@ -135,6 +134,7 @@ public class HomeActivity extends AppCompatActivity {
         // Hide the ActionBar/Toolbar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // If all the permissions are granted, initialize the RtcEngine object and join a channel.
         if (!checkSelfPermission()) {
@@ -269,6 +269,7 @@ public class HomeActivity extends AppCompatActivity {
                     isMuted = false;
                     speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volup));
                 }
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
             }
 
             @Override
