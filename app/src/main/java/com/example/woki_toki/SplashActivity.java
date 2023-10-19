@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start a new Intent to navigate to the next activity
                 Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+               // Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                 startActivity(intent);
                 // Finish the current activity (optional)
                 finish();
