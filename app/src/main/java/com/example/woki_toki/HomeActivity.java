@@ -23,12 +23,15 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.woki_toki.media.RtcTokenBuilder2;
+import com.example.woki_toki.media.RtcTokenBuilder2.Role;
+
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.ChannelMediaOptions;
-
 public class HomeActivity extends AppCompatActivity {
 
     String[] channel = {"Channel 1", "Channel 2", "Channel 3", "Channel 4", "Channel 5"};
@@ -44,27 +47,41 @@ public class HomeActivity extends AppCompatActivity {
     ImageView wokilogonavwhite, wokilogonav, navbg, navbgwhite;
 
     // Agora channel credentials
+    private int uid = 0;
+    static int expirationTimeInSeconds = 3600;
+    int timestamp = (int)(System.currentTimeMillis() / 1000 + expirationTimeInSeconds);
+    RtcTokenBuilder2 tokenBuilder = new RtcTokenBuilder2();
+
     private String channelName = "Channel 1";
-    private String appId = "83c60178325f43569a16057fda1b8249";
-    private String token = "007eJxTYOBffv5M7cfbK4yZZ1lM3Tf31/fENwyvnRiLguLn93pkCbkoMFgYJ5sZGJpbGBuZppkYm5pZJhqaGZiap6UkGiZZGJlYhqobpDYEMjIcdTnPwsgAgSA+J4NzRmJeXmqOgiEDAwDg2R++";
+    private String appId = "a298679016904e1580a88067a2801c42";
+    private String appCertificate = "181b21d144fa4b68b82c4ba752e2cc0b";
+    private String token = tokenBuilder.buildTokenWithUid(appId, appCertificate,
+            channelName, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
     private String channelName2 = "Channel 2";
     private String appId2 = "9d3f253ab4a1465b8c3ad3822f7dc299";
-    private String token2 = "007eJxTYCi+M0V2p9mB5i3pZrdzJy0r0/l92MiMnXGjnMSltAbGk/sVGCxTjNOMTI0Tk0wSDU3MTJMsko0TU4wtjIzSzFOSjSwtc04ZpDYEMjJctnrHxMgAgSA+J4NzRmJeXmqOghEDAwDPHSCE";
+    private String appCertificate2 = "339d360fa0d5408e9d862db9d79d2fc6";
+    private String token2 = tokenBuilder.buildTokenWithUid(appId2, appCertificate2,
+            channelName2, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
     private String channelName3 = "Channel 3";
     private String appId3 = "8eac6b67f49d4fe9ac6af1a3bce0c284";
-    private String token3 = "007eJxTYOjo6zTSfGOnmSbTW+E6u/KDyYNfV+PyFjls3uE7l/2Rq70Cg0VqYrJZkpl5molliklaqiWQl5hmmGiclJxqkGxkYcJx2iC1IZCRwej/e2ZGBggE8TkZnDMS8/JScxSMGRgADfAhrw==";
+    private String appCertificate3 = "cfcfa47edf954b17bd45633280f6e53d";
+    private String token3 = tokenBuilder.buildTokenWithUid(appId3, appCertificate3,
+            channelName3, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
     private String channelName4 = "Channel 4";
     private String appId4 = "6d4b3ca419e44a33a072ed79833a171b";
-    private String token4 = "007eJxTYMh2WTXxWQ/TG+05K0yffzA57qvtELj8ffed0N+OxzeLs/9UYDBLMUkyTk40MbRMNTFJNDZONDA3Sk0xt7QAMg3NDZOe3jJIbQhkZIj/U8LEyACBID4ng3NGYl5eao6CCQMDAGx4IpI=";
+    private String appCertificate4 = "eca5071971f34d86a057fc377682d169";
+    private String token4 = tokenBuilder.buildTokenWithUid(appId4, appCertificate4,
+            channelName4, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
     private String channelName5 = "Channel 5";
     private String appId5 = "11bc9ee499ab45edb5bfec5a00026d07";
-    private String token5 = "007eJxTYOjJLch12vDvRszXw3ZCb/j1rkjzLCi5H/orWH2OulmurrcCg6FhUrJlaqqJpWVikolpakqSaVJaarJpooGBgZFZioF55S2D1IZARobmdYpMjAwQCOJzMjhnJOblpeYomDIwAADViiBB";
+    private String appCertificate5 = "f1496a9444224edd944a1b348e8eee0c";
+    private String token5 = tokenBuilder.buildTokenWithUid(appId5, appCertificate5,
+            channelName5, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
-    private int uid = 0;
 
     // Track the status of your connection
     private boolean isJoined = false;
@@ -205,7 +222,7 @@ public class HomeActivity extends AppCompatActivity {
                     // Handle other channels if needed
                 }
 
-                Toast.makeText(HomeActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
             }
         });
 
