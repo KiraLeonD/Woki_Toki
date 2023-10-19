@@ -8,29 +8,6 @@
     style="@style/ScreenBackground"
     tools:context=".HomeActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="-1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/navbg"
-        app:layout_constraintVertical_bias="0.105">
-
-        <AutoCompleteTextView
-            android:id="@+id/auto_complete_text"
-            android:layout_width="180dp"
-            style="@style/TextColor"
-            android:layout_height="50dp"
-            android:inputType="none"
-            android:text="Select Channel"
-            android:textSize="12sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <ImageButton
         android:id="@+id/bigwhitemic"
         android:layout_width="wrap_content"
@@ -125,5 +102,16 @@
         app:layout_constraintStart_toStartOf="@+id/navbg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/wokilogonavwhite" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

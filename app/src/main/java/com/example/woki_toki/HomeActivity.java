@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.widget.Spinner;
 
 import com.example.woki_toki.media.RtcTokenBuilder2;
 import com.example.woki_toki.media.RtcTokenBuilder2.Role;
@@ -31,9 +32,8 @@ import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.ChannelMediaOptions;
-public class HomeActivity extends AppCompatActivity {
 
-    String[] channel = {"Channel 1", "Channel 2", "Channel 3", "Channel 4", "Channel 5"};
+public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     AutoCompleteTextView autoCompleteTextView;
     ImageButton speakerbtn, bigwhitemic;
@@ -134,6 +134,14 @@ public class HomeActivity extends AppCompatActivity {
         // Hide the ActionBar/Toolbar
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
+
+        Spinner spinner = findViewById(R.id.spinner1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.numbers, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // If all the permissions are granted, initialize the RtcEngine object and join a channel.
@@ -151,7 +159,10 @@ public class HomeActivity extends AppCompatActivity {
         sp = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         darkMODE = sp.getBoolean("dark", false);
 
+
+
         if (darkMODE) {
+
             wokilogonavwhite.setVisibility(View.VISIBLE);
             navbgwhite.setVisibility(View.VISIBLE);
             wokilogonav.setVisibility(View.INVISIBLE);
@@ -168,6 +179,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         darkMode.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor edit = sp.edit();
@@ -195,36 +207,6 @@ public class HomeActivity extends AppCompatActivity {
         talkstatus = findViewById(R.id.ttttext);
         SeekBar seekBar = findViewById(R.id.seekBar2);
         seekBar.setProgress(50);
-
-        autoCompleteTextView = findViewById(R.id.auto_complete_text);
-        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, channel);
-        autoCompleteTextView.setAdapter(adapterItems);
-
-        //CHANNEL SELECTION
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                agoraEngine.leaveChannel();
-                String item = adapterView.getItemAtPosition(i).toString();
-
-                // Check which channel is selected and update credentials accordingly
-                if (item.equals("Channel 1")) {
-                    joinChannel(channelName, appId, token);
-                } else if (item.equals("Channel 2")) {
-                    joinChannel(channelName2, appId2, token2);
-                } else if (item.equals("Channel 3")) {
-                    joinChannel(channelName3, appId3, token3);
-                } else if (item.equals("Channel 4")) {
-                    joinChannel(channelName4, appId4, token4);
-                } else if (item.equals("Channel 5")) {
-                    joinChannel(channelName5, appId5, token5);
-                } else {
-                    // Handle other channels if needed
-                }
-
-                Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         bigwhitemic.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -280,6 +262,40 @@ public class HomeActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+        agoraEngine.leaveChannel();
+
+        // Check which channel is selected and update credentials accordingly
+        if (item.equals("Channel 1")) {
+            joinChannel(channelName, appId, token);
+            Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
+        } else if (item.equals("Channel 2")) {
+            joinChannel(channelName2, appId2, token2);
+            Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
+        } else if (item.equals("Channel 3")) {
+            joinChannel(channelName3, appId3, token3);
+            Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
+        } else if (item.equals("Channel 4")) {
+            joinChannel(channelName4, appId4, token4);
+            Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
+        } else if (item.equals("Channel 5")) {
+            joinChannel(channelName5, appId5, token5);
+            Toast.makeText(HomeActivity.this, "You are on " + item, Toast.LENGTH_SHORT).show();
+        } else if (item.equals("Select A Channel")) {
+            Toast.makeText(HomeActivity.this, "Select A Channel", Toast.LENGTH_SHORT).show();
+        } else {
+            // Handle other channels if needed
+        }
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     protected void onDestroy() {
