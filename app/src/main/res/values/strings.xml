@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Woki-Toki</string>
+    <string name="app_name">Woki Toki</string>
     <string name="select">Select Channel</string>
     <string-array name="numbers">
         <item>Select A Channel</item>
