@@ -35,8 +35,6 @@ import io.agora.rtc2.ChannelMediaOptions;
 
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    //TESTINGCOMMIT
-
     AutoCompleteTextView autoCompleteTextView;
     ImageButton speakerbtn, bigwhitemic;
     TextView talkstatus;
