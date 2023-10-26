@@ -1,16 +1,18 @@
 package com.example.woki_toki;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -35,15 +37,12 @@ import io.agora.rtc2.ChannelMediaOptions;
 
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    AutoCompleteTextView autoCompleteTextView;
     ImageButton speakerbtn, bigwhitemic;
     TextView talkstatus;
     boolean isMuted, isTalking, darkMODE;
-    ArrayAdapter<String> adapterItems;
     Switch darkMode;
     SharedPreferences sp;
-    SharedPreferences.Editor edit;
-    ImageView wokilogonavwhite, wokilogonav, navbg, navbgwhite;
+    ImageView logodark, logolight;
 
     // Agora channel credentials
     private int uid = 0;
@@ -131,8 +130,12 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Hide the ActionBar/Toolbar
-        getSupportActionBar().hide();
+
+        getSupportActionBar().setTitle("Woki Toki");
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_actionbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_home);
 
         Spinner spinner = findViewById(R.id.spinner1);
@@ -151,56 +154,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setupVoiceSDKEngine();
 
-        darkMode = findViewById(R.id.switch3);
-        wokilogonavwhite = findViewById(R.id.imageView9);
-        wokilogonav = findViewById(R.id.imageView8);
-        navbgwhite = findViewById(R.id.navbgwhite);
-        navbg = findViewById(R.id.navbg);
-        sp = getSharedPreferences("MODE", Context.MODE_PRIVATE);
-        darkMODE = sp.getBoolean("dark", false);
 
-
-
-        if (darkMODE) {
-
-            wokilogonavwhite.setVisibility(View.VISIBLE);
-            navbgwhite.setVisibility(View.VISIBLE);
-            wokilogonav.setVisibility(View.INVISIBLE);
-            navbg.setVisibility(View.INVISIBLE);
-            darkMode.setChecked(true);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            wokilogonavwhite.setVisibility(View.INVISIBLE);
-            navbgwhite.setVisibility(View.INVISIBLE);
-            wokilogonav.setVisibility(View.VISIBLE);
-            navbg.setVisibility(View.VISIBLE);
-            darkMode.setChecked(false);
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-        darkMode.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor edit = sp.edit();
-                if (darkMode.isChecked()) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    wokilogonavwhite.setVisibility(View.VISIBLE);
-                    navbgwhite.setVisibility(View.VISIBLE);
-                    wokilogonav.setVisibility(View.INVISIBLE);
-                    navbg.setVisibility(View.INVISIBLE);
-                    edit.putBoolean("dark", true);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    wokilogonavwhite.setVisibility(View.INVISIBLE);
-                    navbgwhite.setVisibility(View.INVISIBLE);
-                    wokilogonav.setVisibility(View.VISIBLE);
-                    navbg.setVisibility(View.VISIBLE);
-                    edit.putBoolean("dark", false);
-                }
-                edit.apply();
-            }
-        });
 
         speakerbtn = findViewById(R.id.speakerbtn);
         bigwhitemic = findViewById(R.id.bigwhitemic);
@@ -317,6 +271,46 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         if (ContextCompat.checkSelfPermission(this, REQUESTED_PERMISSIONS[0]) != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
+        return true;
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        MenuItem itemswitch = menu.findItem(R.id.switch_action_bar);
+        itemswitch.setActionView(R.layout.use_switch);
+        logodark = findViewById(R.id.icon);
+        logolight = findViewById(R.id.icon1);
+
+        final Switch sw = (Switch) menu.findItem(R.id.switch_action_bar).getActionView().findViewById(R.id.switch2);
+        darkMode = sw;
+        sp = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        darkMODE = sp.getBoolean("dark", false);
+
+        if (darkMODE) {
+            darkMode.setChecked(true);
+            logolight.setVisibility(View.VISIBLE);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            darkMode.setChecked(false);
+            logodark.setVisibility(View.VISIBLE);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        darkMode.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor edit = sp.edit();
+                if (darkMode.isChecked()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    edit.putBoolean("dark", true);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    edit.putBoolean("dark", false);
+                }
+                edit.apply();
+            }
+        });
         return true;
     }
 }

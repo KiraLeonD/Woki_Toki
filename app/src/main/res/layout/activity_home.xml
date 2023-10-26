@@ -12,7 +12,7 @@
         android:id="@+id/bigwhitemic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="156dp"
         android:background="@android:color/transparent"
         android:contentDescription="Click mo q"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,57 +59,14 @@
         app:layout_constraintVertical_bias="0.982"
         app:srcCompat="@drawable/volup" />
 
-    <ImageView
-        android:id="@+id/navbg"
-        android:layout_width="410dp"
-        android:layout_height="83dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/navbg" />
-    <ImageView
-        android:id="@+id/navbgwhite"
-        android:layout_width="410dp"
-        android:layout_height="83dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/navbgwhite" />
-
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="328dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/navbg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wokilogonav" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/navbg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wokilogonavwhite" />
 
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
