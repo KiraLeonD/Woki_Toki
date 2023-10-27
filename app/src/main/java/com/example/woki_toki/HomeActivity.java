@@ -185,11 +185,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 if (!isMuted) {
                     isMuted = true;
                     seekBar.setProgress(0);
-                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volmute));
+                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.mutedark));
                 } else {
                     isMuted = false;
                     seekBar.setProgress(50);
-                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.volup));
+                    speakerbtn.setImageDrawable(getResources().getDrawable(R.drawable.unmutedark));
                 }
             }
         });

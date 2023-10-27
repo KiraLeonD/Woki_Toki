@@ -40,14 +40,28 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/TextColor"
+        android:layout_width="188dp"
+        android:layout_height="310dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_instr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657"
-        app:srcCompat="@drawable/wokitoki_logo" />
+        app:layout_constraintVertical_bias="0.651"
+        android:src="@drawable/logonotxtdark" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        style="@style/TextColor"
+        android:layout_width="188dp"
+        android:layout_height="310dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_instr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.651"
+        android:src="@drawable/logonotxtlight"
+        android:visibility="invisible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
