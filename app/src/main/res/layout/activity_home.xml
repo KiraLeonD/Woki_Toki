@@ -60,20 +60,6 @@
         app:layout_constraintVertical_bias="0.842"
         app:srcCompat="@drawable/unmutedark" />
 
-    <ImageButton
-        android:id="@+id/speakerbtn1"
-        android:layout_width="52dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Click mo q"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ttttext"
-        app:layout_constraintVertical_bias="0.842"
-        app:srcCompat="@drawable/unmutelight"
-        android:visibility="invisible"/>
-
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
@@ -89,7 +75,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/spinner_border" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

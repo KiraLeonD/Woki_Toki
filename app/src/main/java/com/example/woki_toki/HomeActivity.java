@@ -290,12 +290,10 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         if (darkMODE) {
             darkMode.setChecked(true);
             logolight.setVisibility(View.VISIBLE);
-            unmutelight.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             darkMode.setChecked(false);
             logodark.setVisibility(View.VISIBLE);
-            unmutedark.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
