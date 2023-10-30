@@ -43,6 +43,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     Switch darkMode;
     SharedPreferences sp;
     ImageView logodark, logolight;
+    ImageButton unmutedark, unmutelight;
 
     // Agora channel credentials
     private int uid = 0;
@@ -154,8 +155,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setupVoiceSDKEngine();
 
-
-
         speakerbtn = findViewById(R.id.speakerbtn);
         bigwhitemic = findViewById(R.id.bigwhitemic);
         talkstatus = findViewById(R.id.ttttext);
@@ -167,7 +166,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             public boolean onTouch(View view, MotionEvent event) {
                 int action = event.getAction();
                 if (action == MotionEvent.ACTION_DOWN) {
-                    bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.bigwhitemictalk));
+                    bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.bigwhitemictalk1));
                     talkstatus.setText("Talk Now");
                     agoraEngine.enableLocalAudio(true);
                 } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
@@ -280,6 +279,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         itemswitch.setActionView(R.layout.use_switch);
         logodark = findViewById(R.id.icon);
         logolight = findViewById(R.id.icon1);
+        unmutedark = findViewById(R.id.speakerbtn);
+        unmutelight = findViewById(R.id.speakerbtn1);
 
         final Switch sw = (Switch) menu.findItem(R.id.switch_action_bar).getActionView().findViewById(R.id.switch2);
         darkMode = sw;
@@ -289,10 +290,12 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         if (darkMODE) {
             darkMode.setChecked(true);
             logolight.setVisibility(View.VISIBLE);
+            unmutelight.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             darkMode.setChecked(false);
             logodark.setVisibility(View.VISIBLE);
+            unmutedark.setVisibility(View.VISIBLE);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 

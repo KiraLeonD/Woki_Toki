@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <corners android:radius="5dp"  />
+            <stroke android:color="#979797" android:width="1dp" />
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/drop"
+        android:gravity="end|center_vertical"
+        android:left="150dp"
+        android:right="10dp"/>
+</layer-list>
+
