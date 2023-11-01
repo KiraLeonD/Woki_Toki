@@ -29,6 +29,8 @@ import android.widget.Spinner;
 import com.example.woki_toki.media.RtcTokenBuilder2;
 import com.example.woki_toki.media.RtcTokenBuilder2.Role;
 
+import java.util.Random;
+
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
@@ -38,12 +40,12 @@ import io.agora.rtc2.ChannelMediaOptions;
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ImageButton speakerbtn, bigwhitemic;
-    TextView talkstatus;
+    TextView talkstatus, nickNametv;
     boolean isMuted, isTalking, darkMODE;
     Switch darkMode;
-    SharedPreferences sp;
+    SharedPreferences sp, spNn;
     ImageView logodark, logolight;
-    ImageButton unmutedark, unmutelight;
+    ImageButton unmutedark, unmutelight, generateNicknameButton;
 
     // Agora channel credentials
     private int uid = 0;
@@ -51,6 +53,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     int timestamp = (int)(System.currentTimeMillis() / 1000 + expirationTimeInSeconds);
     RtcTokenBuilder2 tokenBuilder = new RtcTokenBuilder2();
 
+    private static final String[] adjectives = {"Swift", "Daring", "Sunny", "Fierce", "Gentle", "Brilliant", "Vivid", "Jolly"};
+    private static final String[] nouns = {"Phoenix", "Shadow", "Thunder", "Star", "Rider", "Dreamer", "Pioneer", "Hotdog"};
     private String channelName = "Channel 1";
     private String appId = "a298679016904e1580a88067a2801c42";
     private String appCertificate = "181b21d144fa4b68b82c4ba752e2cc0b";
@@ -138,6 +142,35 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_home);
+
+        nickNametv = findViewById(R.id.nickNametv);
+        spNn = getSharedPreferences("nickname", Context.MODE_PRIVATE);
+
+        String savedNickname = spNn.getString("nickname", null);
+        generateNicknameButton = findViewById(R.id.generateNew);
+        generateNicknameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String newNickname = generateRandomNickname();
+
+                SharedPreferences.Editor edit = spNn.edit();
+                edit.putString("nickname", newNickname);
+                edit.apply();
+
+                nickNametv.setText("Nickname: " + newNickname);
+            }
+        });
+
+        if (savedNickname == null) {
+            String generatedNickname = generateRandomNickname();
+            SharedPreferences.Editor edit = spNn.edit();
+            edit.putString("nickname", generatedNickname);
+            edit.apply();
+            nickNametv.setText("Nickname: " + generatedNickname);
+        } else {
+            nickNametv.setText("Nickname: " + savedNickname);
+        }
 
         Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -314,4 +347,14 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         });
         return true;
     }
+
+    public static String generateRandomNickname() {
+        Random random = new Random();
+        String randomAdjective = adjectives[random.nextInt(adjectives.length)];
+        String randomNoun = nouns[random.nextInt(nouns.length)];
+
+        return randomAdjective + randomNoun;
+
+    }
+
 }

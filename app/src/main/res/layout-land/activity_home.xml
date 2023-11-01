@@ -8,6 +8,31 @@
     style="@style/ScreenBackground"
     tools:context=".HomeActivity">
 
+    <TextView
+        android:id="@+id/nickNametv"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/generateNew"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/generateNew"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_popup_sync"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#939393" />
 
     <ImageButton
         android:id="@+id/bigwhitemic"
@@ -81,18 +106,18 @@
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingEnd="24dp"
+        android:background="@drawable/spinner_border"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingRight="8dp"
         android:paddingBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/spinner_border" />
-
+        app:layout_constraintTop_toBottomOf="@+id/nickNametv"
+        app:layout_constraintVertical_bias="0.038" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

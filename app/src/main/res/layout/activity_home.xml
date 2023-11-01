@@ -9,6 +9,34 @@
     tools:context=".HomeActivity">
 
     <ImageButton
+        android:id="@+id/generateNew"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@android:drawable/ic_popup_sync"
+        app:layout_constraintBottom_toTopOf="@+id/bigwhitemic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toEndOf="@+id/nickNametv"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:layout_constraintVertical_bias="0.141"
+        app:tint="#939393" />
+
+    <TextView
+        android:id="@+id/nickNametv"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bigwhitemic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:layout_constraintVertical_bias="0.137" />
+
+    <ImageButton
         android:id="@+id/bigwhitemic"
         android:layout_width="339dp"
         android:layout_height="337dp"

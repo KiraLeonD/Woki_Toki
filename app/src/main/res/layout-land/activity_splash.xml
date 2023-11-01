@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splashLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/ScreenBackground"
+    tools:context=".SplashActivity">
+
+    <TextView
+        android:id="@+id/tv_instr"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="88dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Woki Toki"
+        android:textSize="44sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/TextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap sreen to start"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_instr"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/TextColor"
+        android:layout_width="155dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/logonotxtdark"
+        app:layout_constraintBottom_toTopOf="@+id/tv_instr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        style="@style/TextColor"
+        android:layout_width="155dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/logonotxtlight"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/tv_instr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
