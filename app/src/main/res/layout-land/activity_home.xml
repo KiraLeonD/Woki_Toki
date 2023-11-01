@@ -8,37 +8,37 @@
     style="@style/ScreenBackground"
     tools:context=".HomeActivity">
 
+    <ImageButton
+        android:id="@+id/generateNew"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_popup_sync"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:tint="#939393" />
+
     <TextView
         android:id="@+id/nickNametv"
         style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/generateNew"
-        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/generateNew"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@android:drawable/ic_popup_sync"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="#939393" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
     <ImageButton
         android:id="@+id/bigwhitemic"
         android:layout_width="247dp"
         android:layout_height="244dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
         android:contentDescription="Click mo q"
         android:scaleType="fitXY"
@@ -52,6 +52,7 @@
         style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Tap to talk"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -60,22 +61,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bigwhitemic" />
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="275dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="104dp"
-        android:rotation="270"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bigwhitemic"
-        app:layout_constraintHorizontal_bias="0.973"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speakerbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/speakerbtn"
+        app:layout_constraintVertical_bias="0.411">
+
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/speakerbtn"
         android:layout_width="44dp"
         android:layout_height="41dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="Click mo q"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,6 +93,7 @@
         android:layout_width="44dp"
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="Click mo q"
         android:visibility="invisible"
@@ -106,18 +109,29 @@
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/spinner_border"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingEnd="24dp"
         android:paddingRight="8dp"
         android:paddingBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickNametv"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="140dp"
+        android:rotation="270"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bigwhitemic"
+        app:layout_constraintTop_toBottomOf="@+id/speakerbtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

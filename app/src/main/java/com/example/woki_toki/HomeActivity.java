@@ -53,8 +53,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     int timestamp = (int)(System.currentTimeMillis() / 1000 + expirationTimeInSeconds);
     RtcTokenBuilder2 tokenBuilder = new RtcTokenBuilder2();
 
-    private static final String[] adjectives = {"Swift", "Daring", "Sunny", "Fierce", "Gentle", "Brilliant", "Vivid", "Jolly"};
-    private static final String[] nouns = {"Phoenix", "Shadow", "Thunder", "Star", "Rider", "Dreamer", "Pioneer", "Hotdog"};
+    private static final String[] adjectives = {"Swift", "Daring", "Sunny", "Fierce", "Gentle", "Brilliant", "Vivid", "Jolly", "Kaliwang"};
+    private static final String[] nouns = {"Wipes", "Soap", "Thunder", "Butones", "Rider", "Tsinelas", "Sangay", "Hotdog", "Kanan"};
     private String channelName = "Channel 1";
     private String appId = "a298679016904e1580a88067a2801c42";
     private String appCertificate = "181b21d144fa4b68b82c4ba752e2cc0b";
