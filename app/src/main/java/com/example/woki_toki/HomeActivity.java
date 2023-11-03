@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             channelName3, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
 
     private String channelName4 = "Channel 4";
-    private String appId4 = "6d4b3ca419e44a33a072ed79833a171b";
+    private String appId4 = "6d4b3ca419e44a33a072ed79833a17  1b";
     private String appCertificate4 = "eca5071971f34d86a057fc377682d169";
     private String token4 = tokenBuilder.buildTokenWithUid(appId4, appCertificate4,
             channelName4, uid, Role.ROLE_PUBLISHER, timestamp, timestamp);
@@ -204,30 +204,21 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 int action = event.getAction();
+                String selectedChannel = getSelectedChannel(); // Add this method to get the selected channel name
+
                 if (action == MotionEvent.ACTION_DOWN) {
-                    bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.bigwhitemictalk1));
-                    talkstatus.setText("Talk Now");
-                    agoraEngine.enableLocalAudio(true);
-
-
-                    // Add the current user to the list of speakers
-                    currentUserNickname = nickNametv.getText().toString();
-                    speakers.add(currentUserNickname);
-
-                    // Update the TextView with the list of speakers
-                    updateSpeakStatusTextView();
-
-
+                    if ("Select A Channel".equals(selectedChannel)) {
+                        // Show a toast message if "Select A Channel" is selected
+                        Toast.makeText(HomeActivity.this, "Please Choose a Channel to Talk.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.bigwhitemictalk1));
+                        talkstatus.setText("Talk Now");
+                        agoraEngine.enableLocalAudio(true);
+                    }
                 } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                     bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.micbtn));
                     talkstatus.setText("Tap to talk");
                     agoraEngine.enableLocalAudio(false);
-
-                    // Remove the current user from the list of speakers
-                    speakers.remove(currentUserNickname);
-                    // Update the TextView
-                    updateSpeakStatusTextView();
-
                 }
                 return false;
             }
@@ -391,6 +382,12 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         return randomAdjective + randomNoun;
 
+    }
+
+    private String getSelectedChannel() {
+        Spinner spinner = findViewById(R.id.spinner1);
+        String selectedChannel = spinner.getSelectedItem().toString();
+        return selectedChannel;
     }
 
 }
