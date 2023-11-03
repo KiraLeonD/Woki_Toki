@@ -45,10 +45,9 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView talkstatus, nickNametv, tvSpeakStat;
     boolean isMuted, isTalking, darkMODE;
     Switch darkMode;
-    SharedPreferences sp, spNn;
+    SharedPreferences sp;
     ImageView logodark, logolight;
-    ImageButton unmutedark, unmutelight, generateNicknameButton;
-    String currentUserNickname;
+    ImageButton unmutedark, unmutelight;
 
     // Agora channel credentials
     private int uid = 0;
@@ -148,35 +147,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_home);
 
-        tvSpeakStat = findViewById(R.id.tvSpeakStat);
-        nickNametv = findViewById(R.id.nickNametv);
-        spNn = getSharedPreferences("nickname", Context.MODE_PRIVATE);
-
-        String savedNickname = spNn.getString("nickname", null);
-        generateNicknameButton = findViewById(R.id.generateNew);
-        generateNicknameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String newNickname = generateRandomNickname();
-
-                SharedPreferences.Editor edit = spNn.edit();
-                edit.putString("nickname", newNickname);
-                edit.apply();
-
-                nickNametv.setText("Nickname: " + newNickname);
-            }
-        });
-
-        if (savedNickname == null) {
-            String generatedNickname = generateRandomNickname();
-            SharedPreferences.Editor edit = spNn.edit();
-            edit.putString("nickname", generatedNickname);
-            edit.apply();
-            nickNametv.setText("Nickname: " + generatedNickname);
-        } else {
-            nickNametv.setText("Nickname: " + savedNickname);
-        }
 
         Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -297,19 +267,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    private void updateSpeakStatusTextView() {
-        // Check if there are speakers
-        if (!speakers.isEmpty()) {
-            StringBuilder speakStatus = new StringBuilder("People Speaking:\n");
-            for (String speaker : speakers) {
-                speakStatus.append(speaker).append(" is speaking, ");
-            }
-            speakStatus.setLength(speakStatus.length() - 2); // Remove the trailing comma and space
-            tvSpeakStat.setText(speakStatus.toString());
-        } else {
-            tvSpeakStat.setText("People Speaking:\nroom is silent");
-        }
-    }
 
     protected void onDestroy() {
         super.onDestroy();
@@ -373,15 +330,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         return true;
-    }
-
-    public static String generateRandomNickname() {
-        Random random = new Random();
-        String randomAdjective = adjectives[random.nextInt(adjectives.length)];
-        String randomNoun = nouns[random.nextInt(nouns.length)];
-
-        return randomAdjective + randomNoun;
-
     }
 
     private String getSelectedChannel() {

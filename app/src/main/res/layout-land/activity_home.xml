@@ -11,32 +11,6 @@
         android:layout_height="wrap_content"
         style="@style/ScreenBackground">
 
-    <ImageButton
-        android:id="@+id/generateNew"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:src="@android:drawable/ic_popup_sync"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1"
-        app:tint="#939393" />
-
-    <TextView
-        android:id="@+id/nickNametv"
-        style="@style/TextColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/generateNew"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
-
         <ImageButton
             android:id="@+id/bigwhitemic"
             android:layout_width="247dp"
