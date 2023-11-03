@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homeact"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/ScreenBackground"
-    tools:context=".HomeActivity">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/homeact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ScreenBackground">
 
     <ImageButton
         android:id="@+id/generateNew"
@@ -34,32 +37,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
-    <ImageButton
-        android:id="@+id/bigwhitemic"
-        android:layout_width="247dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Click mo q"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/micbtn" />
+        <ImageButton
+            android:id="@+id/bigwhitemic"
+            android:layout_width="247dp"
+            android:layout_height="244dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Click mo q"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/micbtn" />
 
-    <TextView
-        android:id="@+id/ttttext"
-        style="@style/TextColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tap to talk"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bigwhitemic" />
+        <TextView
+            android:id="@+id/ttttext"
+            style="@style/TextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tap to talk"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bigwhitemic" />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -122,16 +127,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="260dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="140dp"
-        android:rotation="270"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bigwhitemic"
-        app:layout_constraintTop_toBottomOf="@+id/speakerbtn" />
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="260dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bigwhitemic"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/speakerbtn"
+            app:layout_constraintVertical_bias="0.0">
 
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="250dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center"
+                android:rotation="270" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
