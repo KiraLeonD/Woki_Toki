@@ -29,6 +29,8 @@ import android.widget.Spinner;
 import com.example.woki_toki.media.RtcTokenBuilder2;
 import com.example.woki_toki.media.RtcTokenBuilder2.Role;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import io.agora.rtc2.Constants;
@@ -40,18 +42,21 @@ import io.agora.rtc2.ChannelMediaOptions;
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ImageButton speakerbtn, bigwhitemic;
-    TextView talkstatus, nickNametv;
+    TextView talkstatus, nickNametv, tvSpeakStat;
     boolean isMuted, isTalking, darkMODE;
     Switch darkMode;
     SharedPreferences sp, spNn;
     ImageView logodark, logolight;
     ImageButton unmutedark, unmutelight, generateNicknameButton;
+    String currentUserNickname;
 
     // Agora channel credentials
     private int uid = 0;
     static int expirationTimeInSeconds = 3600;
     int timestamp = (int)(System.currentTimeMillis() / 1000 + expirationTimeInSeconds);
     RtcTokenBuilder2 tokenBuilder = new RtcTokenBuilder2();
+
+    private List<String> speakers = new ArrayList<>(); //Contains speaker list
 
     private static final String[] adjectives = {"Swift", "Daring", "Sunny", "Fierce", "Gentle", "Brilliant", "Vivid", "Jolly", "Kaliwang"};
     private static final String[] nouns = {"Wipes", "Soap", "Thunder", "Butones", "Rider", "Tsinelas", "Sangay", "Hotdog", "Kanan"};
@@ -143,6 +148,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_home);
 
+        tvSpeakStat = findViewById(R.id.tvSpeakStat);
         nickNametv = findViewById(R.id.nickNametv);
         spNn = getSharedPreferences("nickname", Context.MODE_PRIVATE);
 
@@ -202,10 +208,26 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                     bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.bigwhitemictalk1));
                     talkstatus.setText("Talk Now");
                     agoraEngine.enableLocalAudio(true);
+
+
+                    // Add the current user to the list of speakers
+                    currentUserNickname = nickNametv.getText().toString();
+                    speakers.add(currentUserNickname);
+
+                    // Update the TextView with the list of speakers
+                    updateSpeakStatusTextView();
+
+
                 } else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
                     bigwhitemic.setImageDrawable(getResources().getDrawable(R.drawable.micbtn));
                     talkstatus.setText("Tap to talk");
                     agoraEngine.enableLocalAudio(false);
+
+                    // Remove the current user from the list of speakers
+                    speakers.remove(currentUserNickname);
+                    // Update the TextView
+                    updateSpeakStatusTextView();
+
                 }
                 return false;
             }
@@ -282,6 +304,20 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private void updateSpeakStatusTextView() {
+        // Check if there are speakers
+        if (!speakers.isEmpty()) {
+            StringBuilder speakStatus = new StringBuilder("People Speaking:\n");
+            for (String speaker : speakers) {
+                speakStatus.append(speaker).append(" is speaking, ");
+            }
+            speakStatus.setLength(speakStatus.length() - 2); // Remove the trailing comma and space
+            tvSpeakStat.setText(speakStatus.toString());
+        } else {
+            tvSpeakStat.setText("People Speaking:\nroom is silent");
+        }
     }
 
     protected void onDestroy() {
